@@ -1,0 +1,10 @@
+region: us-east-2
+stack: notes-app-api-prod
+api keys:
+  None
+endpoints:
+  POST - https://db8pgf5jn6.execute-api.us-east-2.amazonaws.com/prod/notes
+  GET - https://db8pgf5jn6.execute-api.us-east-2.amazonaws.com/prod/notes/{id}
+  GET - https://db8pgf5jn6.execute-api.us-east-2.amazonaws.com/prod/notes
+  PUT - https://db8pgf5jn6.execute-api.us-east-2.amazonaws.com/prod/notes/{id}
+  DELETE - https://db8pgf5jn6.execute-api.us-east-2.amazonaws.com/prod/notes/{id}

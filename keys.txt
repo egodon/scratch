@@ -1,0 +1,60 @@
+Access key ID: AKIAJML7JBSDY4E7NMUQ
+Secret access key: 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 
+
+Pool Id:  us-east-2_WzMHkKXFM
+Pool ARN: arn:aws:cognito-idp:us-east-2:675453858669:userpool/us-east-2_WzMHkKXFM
+
+Cognito app client id: 4f535913cv958r6pn5uv5sm99
+
+Cognito Identity pool ID:
+us-east-2:dd6785b4-f479-4c24-a5f9-4bc088747916 
+
+
+apig-test --username admin@example.com --password Passw0rd! --user-pool-id us-east-2_WzMHkKXFM \
+--app-client-id 4f535913cv958r6pn5uv5sm99 --cognito-region us-east-2 \
+--identity-pool-id us-east-2:dd6785b4-f479-4c24-a5f9-4bc088747916 \
+--invoke-url https://db8pgf5jn6.execute-api.us-east-2.amazonaws.com/prod/notes \
+--api-gateway-region us-east-2 --path-template '' --method POST \
+--body "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}"
+
+WINDOWS
+
+apig-test --username admin@example.com --password Passw0rd! --user-pool-id us-east-2_U76oe79IZ --app-client-id 2rf3l93m68o0fgpbd97lcsb2ju --cognito-region us-east-2 --identity-pool-id us-east-2:89d8bf40-e9e7-40d5-93ed-43e5bb1114a5 --invoke-url https://db8pgf5jn6.execute-api.us-east-2.amazonaws.com/prod/ --api-gateway-region us-east-2 --path-template notes --method POST --body "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}"
+
+arn:aws:execute-api:us-east-2:*:U76oe79IZ/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Confirm unauthenticated user page sample code
+http://docs.aws.amazon.com/cognito/latest/developerguide/using-amazon-cognito-useridentity-
+pools-javascript-examples.html#using-amazon-cognito-identity-user-poolsjavascript-
+example-confirming-user
