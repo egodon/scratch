@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import AppBar from 'material-ui/AppBar';
 import Routes from './Routes';
 import RouteNavItem from './components/RouteNavItem';
 import { authUser, signOutUser } from './libs/awsLib';
@@ -55,8 +56,8 @@ class App extends Component {
                 {this.state.isAuthenticated ? (
                   <NavItem onClick={this.handleLogout}>Logout</NavItem>
                 ) : (
-                  [
-                    <React.Fragment key={0}>
+                [
+                  <React.Fragment key={0}>
                       <RouteNavItem key={1} href="/signup">
                         Signup
                       </RouteNavItem>
@@ -64,7 +65,7 @@ class App extends Component {
                         Login
                       </RouteNavItem>
                     </React.Fragment>,
-                  ]
+                ]
                 )}
               </Nav>
             </Navbar.Collapse>
