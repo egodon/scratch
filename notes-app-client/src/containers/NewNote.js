@@ -14,17 +14,17 @@ export default class NewNote extends Component {
 
   validateForm = () => this.state.content.length > 0;
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
     });
   };
 
-  handleFileChange = event => {
+  handleFileChange = (event) => {
     this.file = event.target.files[0];
   };
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
       alert('Please pick a file smaller than 5MB');
@@ -46,7 +46,7 @@ export default class NewNote extends Component {
     }
   };
 
-  createNote = note => {
+  createNote = (note) => {
     return invokeApig({
       path: '/notes',
       method: 'POST',

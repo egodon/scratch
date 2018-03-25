@@ -5,3 +5,15 @@
 .App .navbar-brand {
   font-weight: bold;
 }
+
+.App a {
+  font-size: 1.4rem;
+}
+
+nav .container-fluid {
+  padding-right: 0;
+  border-radius: var(--border-radius);
+}
+
+.navbar {
+}

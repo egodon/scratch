@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { PageHeader, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import { invokeApig } from '../libs/awsLib';
 import './Home.css';
+import notesImg from '../assets/notes.svg';
 
 export default class Home extends Component {
   state = {
@@ -27,49 +27,43 @@ export default class Home extends Component {
     return invokeApig({ path: '/notes' });
   };
 
+  handleNoteClick = (event) => {
+    event.preventDefault();
+    this.props.history.push(event.currentTarget.getAttribute('href'));
+  };
+
   renderNotesList(notes) {
-    return [{}].concat(notes).map(
-      (note, i) =>
-        i !== 0 ? (
-          <ListGroupItem
-            key={note.noteId}
-            href={`/notes/${note.noteId}`}
-            onClick={this.handleNoteClick}
-            header={note.content.trim().split('\n')[0]}
-          >
-            {`Created: ${new Date(note.createdAt).toLocaleString()}`}
-          </ListGroupItem>
-        ) : (
-          <ListGroupItem key="new" href="/notes/new" onClick={this.handleNoteClick}>
-            <h4>
-              <b>{'\uFF0B'}</b> Create a new note
-            </h4>
-          </ListGroupItem>
-        ),
-    );
+    return (notes || []).map((note, i) => (
+      <ListGroupItem
+        key={note.noteId}
+        href={`/notes/${note.noteId}`}
+        onClick={this.handleNoteClick}
+        header={note.content.trim().split('\n')[0]}
+      >
+        {`Created: ${new Date(note.createdAt).toLocaleString()}`}
+      </ListGroupItem>
+    ));
   }
 
-  renderLander() {
+  renderLander = () => {
     return (
       <div className="lander">
         <h1>Scratch</h1>
-        <p>A simple note taking app</p>
-        <div>
-          <Link to="/login" className="btn btn-info btn-lg">
-            Login
-          </Link>
-          <Link to="/signup" className="btn btn-success btn-lg">
-            Signup
-          </Link>
-        </div>
+        <h4>A note taking app</h4>
+        <img src={notesImg} className="lander-image" alt="notes" />
       </div>
     );
-  }
+  };
 
   renderNotes() {
     return (
       <div className="notes">
-        <PageHeader>Your Notes</PageHeader>
+        <div className="notes-header">
+          <h3>YOUR NOTES</h3>
+          <Button bsStyle="primary" href="/notes/new" onClick={this.handleNoteClick}>
+            ADD NOTE
+          </Button>
+        </div>
         <ListGroup>{!this.state.isLoading && this.renderNotesList(this.state.notes)}</ListGroup>
       </div>
     );

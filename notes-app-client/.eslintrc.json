@@ -8,6 +8,7 @@
         "jsx": true
     }
   },
+  "plugins": ["prettier"],
   "rules": {
     "react/jsx-filename-extension": 0,
     "strict": 0,
@@ -20,8 +21,7 @@
     "no-use-before-define": 0,
     "react/no-did-mount-set-state": 0,
     "arrow-body-style": 0,
-    "no-confusing-arrow": 0,
-    "multiline-ternary": ["error", "always"]
+    "no-confusing-arrow": 0
   },
   "globals": {
     "window": true,

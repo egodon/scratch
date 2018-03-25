@@ -63,7 +63,7 @@ class App extends Component {
                       <RouteNavItem key={2} href="/login">
                         Login
                       </RouteNavItem>
-                    </React.Fragment>
+                    </React.Fragment>,
                   ]
                 )}
               </Nav>

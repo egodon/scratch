@@ -56,7 +56,7 @@ export default class Login extends Component {
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email" bsSize="small">
             <ControlLabel>Email</ControlLabel>
             <FormControl
               autoFocus
@@ -65,17 +65,18 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password" bsSize="small">
             <ControlLabel>Password</ControlLabel>
             <FormControl value={this.state.password} onChange={this.handleChange} type="password" />
           </FormGroup>
           <LoaderButton
             block
-            bsSize="large"
+            bsSize="small"
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
             text="Login"
+            className="btn-login"
             loadingText="Logging in…"
           />
         </form>

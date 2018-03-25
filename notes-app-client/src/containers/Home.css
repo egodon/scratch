@@ -6,10 +6,33 @@
 .Home .lander h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.Home .lander p {
-  color: #999;
+.Home .lander h4 {
+  margin-bottom: 2rem;
+}
+
+.Home .lander-image {
+  width: 25rem;
+}
+
+.Home .notes {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.Home .notes-header {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.Home .notes h3 {
+  margin-left: 1.5rem;
 }
 
 .Home .notes h4 {
@@ -19,10 +42,12 @@
   line-height: 1.5;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 1.4rem;
 }
 
 .Home .notes p {
   color: #666;
+  font-size: 1.2rem;
 }
 
 .Home .lander div {
