@@ -2,10 +2,10 @@
   .Login {
     padding: 60px 0;
   }
-  
+
   .Login form {
     margin: 0 auto;
-    max-width: 320px;
+    max-width: 36rem;
     font-size: 1.4rem;
   }
 }
@@ -14,7 +14,6 @@
   border: var(--border-grey);
   border-radius: var(--border-radius);
   padding: 2rem;
-
 }
 
 .btn-login {

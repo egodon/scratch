@@ -6,6 +6,8 @@
     "amazon-cognito-identity-js": "^2.0.0",
     "aws-sdk": "^2.177.0",
     "crypto-js": "^3.1.9-1",
+    "material-ui": "^1.0.0-beta.38",
+    "postcss-nested": "^3.0.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
