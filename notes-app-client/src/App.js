@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
 import Routes from './Routes';
 import RouteNavItem from './components/RouteNavItem';
 import { authUser, signOutUser } from './libs/awsLib';
@@ -25,11 +26,11 @@ class App extends Component {
     this.setState({ isAuthenticating: false });
   }
 
-  userHasAuthenticated = authenticated => {
+  userHasAuthenticated = (authenticated) => {
     this.setState({ isAuthenticated: authenticated });
   };
 
-  handleLogout = e => {
+  handleLogout = (e) => {
     signOutUser();
     this.userHasAuthenticated(false);
     this.props.history.push('./login');
@@ -44,32 +45,27 @@ class App extends Component {
     return (
       !this.state.isAuthenticating && (
         <div className="App container">
-          <Navbar fluid collapseOnSelect>
-            <Navbar.Header>
-              <Navbar.Brand>
+          <AppBar position="static" className="nav">
+            <Toolbar className="nav-bar">
+              <Typography variant="title" color="inherit">
                 <Link to="/">Scratch</Link>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <Nav pullRight>
+              </Typography>
+              <ul>
                 {this.state.isAuthenticated ? (
-                  <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                  <RouteNavItem onClick={this.handleLogout}>Logout</RouteNavItem>
                 ) : (
-                [
-                  <React.Fragment key={0}>
-                      <RouteNavItem key={1} href="/signup">
-                        Signup
-                      </RouteNavItem>
-                      <RouteNavItem key={2} href="/login">
-                        Login
-                      </RouteNavItem>
-                    </React.Fragment>,
-                ]
+                  <Fragment>
+                    <RouteNavItem key={1} href="/signup">
+                      Signup
+                    </RouteNavItem>
+                    <RouteNavItem key={2} href="/login">
+                      Login
+                    </RouteNavItem>
+                  </Fragment>
                 )}
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
+              </ul>
+            </Toolbar>
+          </AppBar>
           <Routes childProps={childProps} />
         </div>
       )

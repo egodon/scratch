@@ -4,6 +4,15 @@
   animation: spin 1s infinite linear;
 }
 
+.LoaderButton {
+  display: flex;
+  justify-content: space-around;
+}
+
+.LoaderButton span {
+  font-size: 1.2rem;
+}
+
 @keyframes spin {
   from {
     transform: scale(1) rotate(0deg);

@@ -6,7 +6,6 @@
   .Login form {
     margin: 0 auto;
     max-width: 36rem;
-    font-size: 1.4rem;
   }
 }
 
@@ -14,9 +13,24 @@
   border: var(--border-grey);
   border-radius: var(--border-radius);
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
 }
 
-.btn-login {
+.Login .input-field {
+  margin-bottom: 2rem;
+}
+
+.Login input {
+  font-size: 1.6rem;
+}
+
+.Login label {
+  font-size: 1.4rem;
+}
+
+.Login .btn-login {
   width: 50%;
   margin: 0 auto;
 }

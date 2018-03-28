@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { HelpBlock, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import Input, { InputLabel } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
+import FormHelperText from 'material-ui/Form/FormHelperText';
 import { AuthenticationDetails, CognitoUserPool } from 'amazon-cognito-identity-js';
 import config from '../config';
 import LoaderButton from '../components/LoaderButton';
@@ -22,13 +24,13 @@ export default class Signup extends Component {
 
   validateConfirmationForm = () => this.state.confirmationCode.length > 0;
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
 
     this.setState({ isLoading: true });
@@ -43,7 +45,7 @@ export default class Signup extends Component {
     this.setState({ isLoading: false });
   };
 
-  handleConfirmationSubmit = async event => {
+  handleConfirmationSubmit = async (event) => {
     event.preventDefault();
     this.setState({ isLoading: true });
     try {
@@ -70,7 +72,8 @@ export default class Signup extends Component {
           return;
         }
         resolve(result.user);
-      }));
+      }),
+    );
   };
 
   confirm = (user, confirmationCode) =>
@@ -81,7 +84,8 @@ export default class Signup extends Component {
           return;
         }
         resolve(result);
-      }));
+      }),
+    );
 
   authenticate = (user, email, password) => {
     const authenticationData = {
@@ -91,26 +95,26 @@ export default class Signup extends Component {
     const authenticationDetails = new AuthenticationDetails(authenticationData);
     return new Promise((resolve, reject) =>
       user.authenticateUser(authenticationDetails, {
-        onSuccess: result => resolve(),
-        onFailure: err => reject(err),
-      }));
+        onSuccess: (result) => resolve(),
+        onFailure: (err) => reject(err),
+      }),
+    );
   };
 
   renderConfirmationForm = () => (
     <form onSubmit={this.handleConfirmationSubmit}>
-      <FormGroup controlId="confirmationCode" bsSize="large">
-        <ControlLabel>Confirmation Code</ControlLabel>
-        <FormControl
+      <FormControl className="input-field">
+        <InputLabel>Confirmation Code</InputLabel>
+        <Input
+          id="confirmationCode"
           autoFocus
           type="tel"
           value={this.state.confirmationCode}
           onChange={this.handleChange}
         />
-        <HelpBlock>Please check your email for the code.</HelpBlock>
-      </FormGroup>
+        <FormHelperText>Please check your email for the code.</FormHelperText>
+      </FormControl>
       <LoaderButton
-        block
-        bsSize="large"
         disabled={!this.validateConfirmationForm()}
         type="submit"
         isLoading={this.state.isLoading}
@@ -122,25 +126,35 @@ export default class Signup extends Component {
 
   renderForm = () => (
     <form onSubmit={this.handleSubmit}>
-      <FormGroup controlId="email" bsSize="small">
-        <ControlLabel>Email</ControlLabel>
-        <FormControl autoFocus type="email" value={this.state.email} onChange={this.handleChange} />
-      </FormGroup>
-      <FormGroup controlId="password" bsSize="small">
-        <ControlLabel>Password</ControlLabel>
-        <FormControl value={this.state.password} onChange={this.handleChange} type="password" />
-      </FormGroup>
-      <FormGroup controlId="confirmPassword" bsSize="small">
-        <ControlLabel>Confirm Password</ControlLabel>
-        <FormControl
+      <FormControl className="input-field">
+        <InputLabel>Email</InputLabel>
+        <Input
+          id="email"
+          autoFocus
+          type="email"
+          value={this.state.email}
+          onChange={this.handleChange}
+        />
+      </FormControl>
+      <FormControl className="input-field">
+        <InputLabel>Password</InputLabel>
+        <Input
+          id="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+          type="password"
+        />
+      </FormControl>
+      <FormControl className="input-field">
+        <InputLabel>Confirm Password</InputLabel>
+        <Input
+          id="confirmPassword"
           value={this.state.confirmPassword}
           onChange={this.handleChange}
           type="password"
         />
-      </FormGroup>
+      </FormControl>
       <LoaderButton
-        block
-        bsSize="small"
         disabled={!this.validateForm()}
         type="submit"
         isLoading={this.state.isLoading}

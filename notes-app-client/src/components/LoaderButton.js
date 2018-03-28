@@ -1,8 +1,17 @@
 import React from 'react';
-import { Button, Glyphicon } from 'react-bootstrap';
+import Button from 'material-ui/Button';
+import { CircularProgress } from 'material-ui/Progress';
+import { withStyles } from 'material-ui/styles';
 import './LoaderButton.css';
 
-export default ({
+const styles = () => ({
+  root: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+});
+
+const LoaderButton = ({
   isLoading,
   text,
   loadingText,
@@ -11,11 +20,15 @@ export default ({
   ...props
 }) => (
   <Button
-    className={`LoaderButton ${className}`}
-    disabled={disabled || isLoading}
+    variant={!isLoading ? 'raised' : 'flat'}
+    color={!isLoading ? 'primary' : 'default'}
+    className={`LoaderButton ${props.classes.root} ${className}`}
+    disabled={disabled}
     {...props}
   >
-    {isLoading && <Glyphicon glyph="refresh" className="spinning" />}
+    {isLoading && <CircularProgress size={20} />}
     {!isLoading ? text : loadingText}
   </Button>
 );
+
+export default withStyles(styles)(LoaderButton);

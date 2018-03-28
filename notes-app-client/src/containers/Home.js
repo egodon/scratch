@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import Button from 'material-ui/Button';
 import { invokeApig } from '../libs/awsLib';
 import './Home.css';
 import notesImg from '../assets/notes.svg';
@@ -50,7 +51,10 @@ export default class Home extends Component {
       <div className="lander">
         <h1>Scratch</h1>
         <h4>A note taking app</h4>
-        <img src={notesImg} className="lander-image" alt="notes" />
+        <img
+          src={notesImg} className="lander-image"
+          alt="notes"
+        />
       </div>
     );
   };
@@ -60,7 +64,12 @@ export default class Home extends Component {
       <div className="notes">
         <div className="notes-header">
           <h3>YOUR NOTES</h3>
-          <Button bsStyle="primary" href="/notes/new" onClick={this.handleNoteClick}>
+          <Button
+            variant="raised"
+            color="primary"
+            href="/notes/new"
+            onClick={this.handleNoteClick}
+          >
             ADD NOTE
           </Button>
         </div>

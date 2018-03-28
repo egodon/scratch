@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { CognitoUserPool, AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import Input, { InputLabel } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
 import LoaderButton from '../components/LoaderButton';
 import config from '../config';
 
@@ -13,7 +14,9 @@ export default class Login extends Component {
     password: '',
   };
 
-  validateForm = () => this.state.email.length > 0 && this.state.password.length > 0;
+  validateForm = () => {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -33,8 +36,8 @@ export default class Login extends Component {
 
     return new Promise((resolve, reject) => {
       user.authenticateUser(authenticationDetails, {
-        onSuccess: result => resolve(),
-        onFailure: err => reject(err),
+        onSuccess: (result) => resolve(),
+        onFailure: (err) => reject(err),
       });
     });
   };
@@ -56,22 +59,26 @@ export default class Login extends Component {
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="small">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
+          <FormControl className="input-field">
+            <InputLabel>Email</InputLabel>
+            <Input
               autoFocus
+              id="email"
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
             />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="small">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl value={this.state.password} onChange={this.handleChange} type="password" />
-          </FormGroup>
+          </FormControl>
+          <FormControl className="input-field">
+            <InputLabel>Password</InputLabel>
+            <Input
+              id="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              type="password"
+            />
+          </FormControl>
           <LoaderButton
-            block
-            bsSize="small"
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
