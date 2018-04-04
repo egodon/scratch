@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import React, { Component, Fragment } from 'react';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Button from 'material-ui/Button';
+import { CircularProgress } from 'material-ui/Progress';
 import { invokeApig } from '../libs/awsLib';
 import './Home.css';
 import notesImg from '../assets/notes.svg';
+import Divider from 'material-ui/Divider/Divider';
 
 export default class Home extends Component {
   state = {
@@ -34,14 +37,21 @@ export default class Home extends Component {
 
   renderNotesList(notes) {
     return (notes || []).map((note, i) => (
-      <ListGroupItem
-        key={note.noteId}
-        href={`/notes/${note.noteId}`}
-        onClick={this.handleNoteClick}
-        header={note.content.trim().split('\n')[0]}
-      >
-        {`Created: ${new Date(note.createdAt).toLocaleString()}`}
-      </ListGroupItem>
+      <Fragment key={note.noteId}>
+        <ListItem
+          href={`/notes/${note.noteId}`}
+          onClick={this.handleNoteClick}
+          header={note.content.trim().split('\n')[0]}
+          className="notes-item"
+          button
+        >
+          <ListItemText
+            primary={note.content.trim().split('\n')[0]}
+            secondary={`Created: ${new Date(note.createdAt).toLocaleString()}`}
+          />
+        </ListItem>
+        <Divider />
+      </Fragment>
     ));
   }
 
@@ -50,7 +60,10 @@ export default class Home extends Component {
       <div className="lander">
         <h1>Scratch</h1>
         <h4>A note taking app</h4>
-        <img src={notesImg} className="lander-image" alt="notes" />
+        <img
+          src={notesImg} className="lander-image"
+          alt="notes"
+        />
       </div>
     );
   };
@@ -59,12 +72,19 @@ export default class Home extends Component {
     return (
       <div className="notes">
         <div className="notes-header">
-          <h3>YOUR NOTES</h3>
-          <Button bsStyle="primary" href="/notes/new" onClick={this.handleNoteClick}>
+          <h2>YOUR NOTES</h2>
+          <Button
+            variant="raised" color="primary"
+            href="/notes/new" onClick={this.handleNoteClick}
+          >
             ADD NOTE
           </Button>
         </div>
-        <ListGroup>{!this.state.isLoading && this.renderNotesList(this.state.notes)}</ListGroup>
+        {this.state.isLoading
+          ? <CircularProgress size={50} className="notes-loading"/>
+          : <List>{this.renderNotesList(this.state.notes)}</List>
+        }
+        
       </div>
     );
   }

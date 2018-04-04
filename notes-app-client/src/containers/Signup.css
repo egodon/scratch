@@ -13,6 +13,24 @@
   border: var(--border-grey);
   border-radius: var(--border-radius);
   padding: 2rem;
+<<<<<<< HEAD
+=======
+  display: flex;
+  flex-direction: column;
+}
+
+.Signup label {
+  font-size: 1.4rem;
+}
+
+.Signup .input-field {
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+}
+
+.Signup div {
+  font-size: 1.4rem;
+>>>>>>> material-ui
 }
 
 .Signup .btn[disabled] {
@@ -21,7 +39,11 @@
 
 .Signup button {
   width: 50%;
+<<<<<<< HEAD
   margin: 0 auto;
+=======
+  margin: 1rem auto 0 auto;
+>>>>>>> material-ui
 }
 
 .Signup form span.help-block {
