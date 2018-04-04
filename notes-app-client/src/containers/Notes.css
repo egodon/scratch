@@ -1,9 +1,33 @@
+.Notes {
+  display: flex;
+  justify-content: center;
+}
+
 .Notes form {
+  display: flex;
+  flex-direction: column;
   padding-bottom: 15px;
+  width: 70rem;
 }
 
 .Notes form textarea {
-  height: 300px;
+  height: 30rem;
   font-size: 24px;
 }
 
+.Notes__upload {
+  margin: 2rem 0;
+  display: block;
+}
+
+.Notes__file-name {
+  font-size: 1.2rem;
+  margin-left: 2rem;
+}
+
+.Notes__btns {
+  width: 34%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2rem;
+}

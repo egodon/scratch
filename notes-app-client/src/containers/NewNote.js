@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import Input, { InputLabel } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
+import Button from 'material-ui/Button';
 import LoaderButton from '../components/LoaderButton';
 import { invokeApig, s3Upload } from '../libs/awsLib';
 import config from '../config';
@@ -10,6 +12,7 @@ export default class NewNote extends Component {
   state = {
     isLoading: null,
     content: '',
+    file: null,
   };
 
   validateForm = () => this.state.content.length > 0;
@@ -21,12 +24,13 @@ export default class NewNote extends Component {
   };
 
   handleFileChange = (event) => {
-    this.file = event.target.files[0];
+    this.setState({ file: event.target.files[0] });
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
+    const { file } = this.state;
+    if (file && file.size > config.MAX_ATTACHMENT_SIZE) {
       alert('Please pick a file smaller than 5MB');
       return;
     }
@@ -34,7 +38,9 @@ export default class NewNote extends Component {
     this.setState({ isLoading: true });
 
     try {
-      const uploadedFilename = this.file ? (await s3Upload(this.file)).Location : null;
+      const uploadedFilename = file
+        ? (await s3Upload(file)).Location
+        : null;
       await this.createNote({
         content: this.state.content,
         attachment: uploadedFilename,
@@ -58,27 +64,37 @@ export default class NewNote extends Component {
     return (
       <div className="NewNote">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="content">
-            <FormControl
+          <FormControl>
+            <InputLabel>Note</InputLabel>
+            <Input
+              id="content"
+              multiline
               onChange={this.handleChange}
               value={this.state.content}
-              componentClass="textarea"
+              type="textarea"
             />
-          </FormGroup>
-          <FormGroup controlId="file">
-            <ControlLabel>Attachment</ControlLabel>
-            <FormControl onChange={this.handleFileChange} type="file" />
-          </FormGroup>
-          <LoaderButton
-            block
-            bsStyle="primary"
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-            isLoading={this.state.isLoading}
-            text="Create"
-            loadingText="Creating…"
-          />
+          </FormControl>
+          <div className="NewNote__btns">
+            <input
+              type="file"
+              style={{ display: 'none' }}
+              id="file-upload"
+              onChange={this.handleFileChange}
+            />
+            <label htmlFor="file-upload" className="NewNote__upload">
+              <Button variant="raised" component="span">
+                UPLOAD
+              </Button>
+              <span className="NewNote__file-name">{this.state.file && this.state.file.name}</span>
+            </label>
+            <LoaderButton
+              disabled={!this.validateForm()}
+              type="submit"
+              isLoading={this.state.isLoading}
+              text="Create"
+              loadingText="Creating…"
+            />
+          </div>
         </form>
       </div>
     );

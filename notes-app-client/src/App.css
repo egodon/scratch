@@ -6,6 +6,11 @@
   font-size: 1.4rem;
 }
 
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
 .nav {
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
@@ -35,6 +40,7 @@
 
 .nav a {
   color: #fff;
+  text-decoration: none;
 }
 
 .nav a:hover,

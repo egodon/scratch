@@ -7,9 +7,12 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   margin-bottom: 1rem;
+  font-size: 2.8rem;
+  text-decoration: none;
 }
 
 .Home .lander h4 {
+  font-size: 1.6rem;
   margin-bottom: 2rem;
 }
 
@@ -20,6 +23,9 @@
 .Home .notes {
   width: 60%;
   margin: 0 auto;
+  min-height: 40rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .Home .notes-header {
@@ -29,10 +35,17 @@
   justify-content: space-between;
 }
 
+.notes-item {
+  border: 1px solid red;
+}
 
+.Home .notes h2 {
+  margin-left: 1.5rem;
+  font-size: 2rem;
+}
 
 .Home .notes h3 {
-  margin-left: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .Home .notes h4 {
@@ -48,6 +61,10 @@
 .Home .notes p {
   color: #666;
   font-size: 1.2rem;
+}
+
+.Home .notes-loading {
+  margin: 5rem auto;
 }
 
 .Home .lander div {
