@@ -33,7 +33,7 @@ class App extends Component {
   handleLogout = (e) => {
     signOutUser();
     this.userHasAuthenticated(false);
-    this.props.history.push('./login');
+    this.props.history.push('./');
   };
 
   render() {

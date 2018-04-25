@@ -60,10 +60,7 @@ export default class Home extends Component {
       <div className="lander">
         <h1>Scratch</h1>
         <h4>A note taking app</h4>
-        <img
-          src={notesImg} className="lander-image"
-          alt="notes"
-        />
+        <img src={notesImg} className="lander-image" alt="notes" />
       </div>
     );
   };
@@ -73,18 +70,15 @@ export default class Home extends Component {
       <div className="notes">
         <div className="notes-header">
           <h2>YOUR NOTES</h2>
-          <Button
-            variant="raised" color="primary"
-            href="/notes/new" onClick={this.handleNoteClick}
-          >
+          <Button variant="raised" color="primary" href="/notes/new" onClick={this.handleNoteClick}>
             ADD NOTE
           </Button>
         </div>
-        {this.state.isLoading
-          ? <CircularProgress size={50} className="notes-loading"/>
-          : <List>{this.renderNotesList(this.state.notes)}</List>
-        }
-        
+        {this.state.isLoading ? (
+          <CircularProgress size={50} className="notes-loading" />
+        ) : (
+          <List>{this.renderNotesList(this.state.notes)}</List>
+        )}
       </div>
     );
   }
